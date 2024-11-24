@@ -1,0 +1,256 @@
+<% layout('layouts/boilerplate') %>
+<section class="q13">
+    <div class="price">
+        <div class="container_q12">
+            <h2>How much are you willing to spend for the perfect fit?</h2>
+            <form method="post" action="/ques13">
+              <!-- Tops Section -->
+              <div class="category">
+                <h3>Tops</h3>
+                <p>Blouses, tees, sweaters, tunics</p>
+                <div class="price-options">
+                  <button type="button" class="price-btn tops" onclick="toggleSelection('tops', this, '300')">₹300</button>
+                  <button type="button" class="price-btn tops" onclick="toggleSelection('tops', this, '450')">₹450</button>
+                  <button type="button" class="price-btn tops" onclick="toggleSelection('tops', this, '600')">₹600</button>
+                  <button type="button" class="price-btn tops" onclick="toggleSelection('tops', this, '750')">₹750</button>
+                  <button type="button" class="price-btn tops" onclick="toggleSelection('tops', this, '1000+')">₹1000+</button>
+                  <input type="hidden" id="tops-input" name="tops" value="450">
+                </div>
+              </div>
+            
+              <!-- Outerwear Section -->
+              <div class="category">
+                <h3>Outerwear</h3>
+                <p>Light jackets, trench coats, vests</p>
+                <div class="price-options">
+                  <button type="button" class="price-btn outerwear" onclick="toggleSelection('outerwear', this, '400')">₹400</button>
+                  <button type="button" class="price-btn outerwear" onclick="toggleSelection('outerwear', this, '600')">₹600</button>
+                  <button type="button" class="price-btn outerwear" onclick="toggleSelection('outerwear', this, '800')">₹800</button>
+                  <button type="button" class="price-btn outerwear" onclick="toggleSelection('outerwear', this, '1000')">₹1000</button>
+                  <button type="button" class="price-btn outerwear" onclick="toggleSelection('outerwear', this, '1200+')">₹1200+</button>
+                  <input type="hidden" id="outerwear-input" name="outerwear" value="600">
+                </div>
+              </div>
+            
+              <!-- Dresses Section -->
+              <div class="category">
+                <h3>Dresses</h3>
+                <p>Fit & flare, maxi, wrap, shift</p>
+                <div class="price-options">
+                  <button type="button" class="price-btn dresses" onclick="toggleSelection('dresses', this, '3000')">₹3000</button>
+                  <button type="button" class="price-btn dresses" onclick="toggleSelection('dresses', this, '5000')">₹5000</button>
+                  <button type="button" class="price-btn dresses" onclick="toggleSelection('dresses', this, '7500')">₹7500</button>
+                  <button type="button" class="price-btn dresses" onclick="toggleSelection('dresses', this, '10000')">₹10000</button>
+                  <button type="button" class="price-btn dresses" onclick="toggleSelection('dresses', this, '12500+')">₹12500+</button>
+                  <input type="hidden" id="dresses-input" name="dresses" value="7500">
+                </div>
+              </div>
+            
+              <!-- Next Button -->
+              <button class="next-btn">Next</button>
+            </form>
+        </div>
+          <a href="ques12"><button class="prev-btn">Previous</button></a>
+        </div>
+    </div>
+</section>
+
+<script>
+// Function to handle button selection
+document.addEventListener("DOMContentLoaded", () => {
+  // Object to store selected values for all categories
+  const selectedValues = {
+    tops: '',
+    outerwear: '',
+    dresses: ''
+  };
+
+  // Function to update hidden inputs and selectedValues object
+  function updateCategoryInput(category, value) {
+    const hiddenInputId = `${category}-input`;
+    let hiddenInput = document.getElementById(hiddenInputId);
+
+    // Ensure the hidden input exists
+    if (!hiddenInput) {
+      hiddenInput = document.createElement('input');
+      hiddenInput.type = 'hidden';
+      hiddenInput.id = hiddenInputId;
+      hiddenInput.name = category;
+      document.forms[0].appendChild(hiddenInput);
+    }
+
+    // Update the hidden input value
+    hiddenInput.value = value;
+
+    // Update the selectedValues object
+    selectedValues[category] = value;
+
+    // Debugging: Log the current state of selectedValues
+    console.log('Selected Values:', selectedValues);
+  }
+
+  // Add event listeners to all buttons
+  const categories = ["tops", "outerwear", "dresses"];
+  categories.forEach((category) => {
+    const buttons = document.querySelectorAll(`.price-btn.${category}`);
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const value = button.textContent.trim(); // Get the button's value (e.g., ₹450)
+
+        // Check if the button is already selected
+        if (button.classList.contains("selected")) {
+          // Deselect the button and clear the input
+          button.classList.remove("selected");
+          updateCategoryInput(category, ''); // Clear the value
+        } else {
+          // Deselect all buttons in the category
+          buttons.forEach((btn) => btn.classList.remove("selected"));
+
+          // Select the clicked button and update the input
+          button.classList.add("selected");
+          updateCategoryInput(category, value); // Set the selected value
+        }
+      });
+    });
+  });
+});
+
+
+
+
+
+</script>
+
+
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+
+  .q13{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120vh;
+    background-color: #EDE6E2;
+  }
+
+  .price{
+    width: 63rem;
+    position: absolute;
+    top: 2rem;
+    left: 15rem;
+  }
+  .container_q12 {
+        padding: 4rem;
+        width: 90%;
+        max-width: 50rem;
+        margin-bottom: 1rem;
+        text-align: center; /* Center the text and buttons inside the container */
+    }
+
+    .container_q12 h2 {
+        text-align: center;
+        font-size: 1.8;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        color: #1d3557;
+    }
+
+    .category h3 {
+        font-size: 1rem;
+        color: #1d3557;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+
+    .category p {
+        font-size: 1rem;
+        color: #1d3557;
+        margin-bottom: 1rem;
+    }
+
+    .price-options {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    .price-btn {
+        flex: 1;
+        padding: 0.5rem 2rem;
+        border-radius: 5px;
+        border: 1px solid black;
+        font-size: 1rem;
+        color: #1d3557;
+        background-color: #fff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    .price-btn:hover {
+      color: #fff;
+      background-color: #1d3557;
+    }
+
+    .price-btn.selected {
+      color: #fff;
+      background-color: #1d3557;
+    }
+
+    .prev-btn, .next-btn {
+    padding: 0.8rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1d3557;
+    background-color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 20px;
+  }
+  
+  .prev-btn:hover, .next-btn:hover {
+    background-color: #1d3557;
+    color: #fff;
+  }
+
+  .prev-btn {
+    position: absolute;
+    bottom: 0rem;
+    left: -3rem;
+  }
+
+  .next-btn {
+    position: absolute;
+    bottom: 0rem;
+    right: 11rem;
+  }
+</style>
+
+<script>
+    function toggleSelection(button, season) {
+      const hiddenInput = document.getElementById('season');
+      
+      // Check if the button is already selected
+      if (button.classList.contains('selected')) {
+        // Deselect the button
+        button.classList.remove('selected');
+        hiddenInput.value = ''; // Clear the hidden input
+      } else {
+        // Deselect all buttons first
+        // document.querySelectorAll('.opt').forEach(btn => btn.classList.remove('selected'));
+        
+        // Select the clicked button
+        button.classList.add('selected');
+        hiddenInput.value = season; // Update the hidden input with the last selected value
+      }
+    }
+  </script>
