@@ -3,11 +3,10 @@
 <section class="styles-recorded">
     <div class="message-box">
         <h1>Select Inputs</h1>
-        <form class="input-form" id="mainForm" action="/recommend_input" method="POST">
-            <!-- Dropdowns for user inputs -->
+        <form class="input-form" method="post" action="">
             <div class="input-group">
                 <label for="Season">Choose a Season</label>
-                <select id="Season" name="season" onchange="updateInputArray()">
+                <select id="Season" name="season" required>
                     <option value="" disabled selected>--Select--</option>
                     <option value="summer">Summer</option>
                     <option value="winter">Winter</option>
@@ -17,7 +16,7 @@
             </div>
             <div class="input-group">
                 <label for="Cloth-category">Cloth Category you are looking for?</label>
-                <select id="Cloth-category" name="cloth_category" onchange="updateInputArray()">
+                <select id="Cloth-category" name="cloth_category" required>
                     <option value="" disabled selected>--Select--</option>
                     <option value="t-shirt">t-shirt</option>
                     <option value="shirt">shirt</option>
@@ -36,35 +35,20 @@
             </div>
             <div class="input-group">
                 <label for="Occasion">Occasion</label>
-                <select id="Occasion" name="occasion" onchange="updateInputArray()">
+                <select id="Occasion" name="occasion" required>
                     <option value="" disabled selected>--Select--</option>
                     <option value="Formal">Formal</option>
                     <option value="Casual">Casual</option>
                     <option value="Party">Party</option>
+                    
                 </select>
             </div>
-        
-            <!-- Hidden input to store the array -->
-            <input type="hidden" id="inputArray" name="inputArray" value="">
-            <button class="btn">Pay Now!!</button>
+            <form method="post" action="/pay">
+                <button class="btn">Pay Now!!</button>
+            </form>
         </form>
     </div>
 </section>
-
-
-<script>
-    function updateInputArray() {
-        // Get values from dropdowns
-        const season = document.getElementById('Season').value;
-        const clothCategory = document.getElementById('Cloth-category').value;
-        const occasion = document.getElementById('Occasion').value;
-
-        // Form an array and update the hidden input
-        const inputArray = [season, clothCategory, occasion];
-        document.getElementById('inputArray').value = JSON.stringify(inputArray);
-    }
-</script>
-
 
 <style>
     * {

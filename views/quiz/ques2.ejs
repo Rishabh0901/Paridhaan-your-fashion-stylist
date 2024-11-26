@@ -3,7 +3,7 @@
 <section class="ques2">
   <div class="gender-selection">
     <label>Choose Your Gender</label>
-    <form method="post" action="/ques2">
+    <form method="post" action="/ques2" onsubmit="return validateSelection()">
         <div class="buttons">
             <button type="button" class="gender-btn" onclick="selectGender(this, 'M')">Male</button>
             <button type="button" class="gender-btn" onclick="selectGender(this, 'F')">Female</button>
@@ -14,8 +14,6 @@
     <a href="ques1"><button class="prev-btn">Previous</button></a>
   </div>
 </section>
-
-
 
 <script>
   function selectGender(button, gender) {
@@ -36,7 +34,17 @@
           hiddenInput.value = gender; // Set the hidden input to the selected value
       }
   }
+
+  function validateSelection() {
+      const gender = document.getElementById('gender').value;
+      if (!gender) {
+          alert('Please select a gender before proceeding.');
+          return false; // Prevent form submission
+      }
+      return true; // Allow form submission
+  }
 </script>
+
 
 
 <style>

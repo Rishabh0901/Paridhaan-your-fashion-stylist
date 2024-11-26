@@ -5,7 +5,7 @@
 
         <div class="input-container">
             <h2>Which fabric do you gravitate towards?</h2>
-            <form method="post" action="/ques7">
+            <form method="post" action="/ques7" onsubmit="return validationSelection()">
                 <div class="input-box">
                     <button type="button" class="opt" onclick="toggleSelection(this, 'Cotton')">Cotton (Casual and breathable)</button><br>
                     <button type="button" class="opt" onclick="toggleSelection(this, 'Silk')">Silk (Luxurious and smooth)</button><br>
@@ -41,6 +41,13 @@
       // Update hidden input value with the current selections
       hiddenInput.value = JSON.stringify(selectedfabrics);
     }
+    function validationSelection() {
+      if (selectedfabrics.length === 0) {
+          alert("Please select at least one vacation spot before proceeding.");
+          return false; // Prevent form submission
+      }
+      return true; // Allow form submission
+  }
   </script>
 
 

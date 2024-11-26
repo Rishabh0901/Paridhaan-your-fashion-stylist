@@ -1,127 +1,115 @@
 <% layout('layouts/boilerplate') %>
+
 <section class="q13">
-    <div class="price">
-        <div class="container_q12">
-            <h2>How much are you willing to spend for the perfect fit?</h2>
-            <form method="post" action="/ques13">
+  <div class="price">
+      <div class="container_q12">
+          <h2>How much are you willing to spend for the perfect fit?</h2>
+          <form id="priceForm" method="post" action="/ques13" onsubmit="return validateSelections()">
               <!-- Tops Section -->
               <div class="category">
-                <h3>Tops</h3>
-                <p>Blouses, tees, sweaters, tunics</p>
-                <div class="price-options">
-                  <button type="button" class="price-btn tops" onclick="toggleSelection('tops', this, '300')">₹300</button>
-                  <button type="button" class="price-btn tops" onclick="toggleSelection('tops', this, '450')">₹450</button>
-                  <button type="button" class="price-btn tops" onclick="toggleSelection('tops', this, '600')">₹600</button>
-                  <button type="button" class="price-btn tops" onclick="toggleSelection('tops', this, '750')">₹750</button>
-                  <button type="button" class="price-btn tops" onclick="toggleSelection('tops', this, '1000+')">₹1000+</button>
-                  <input type="hidden" id="tops-input" name="tops" value="450">
-                </div>
+                  <h3>Tops</h3>
+                  <p>Blouses, tees, sweaters, tunics</p>
+                  <div class="price-options">
+                      <button type="button" class="price-btn tops" onclick="toggleSelection('tops', this, '300')">₹300</button>
+                      <button type="button" class="price-btn tops" onclick="toggleSelection('tops', this, '450')">₹450</button>
+                      <button type="button" class="price-btn tops" onclick="toggleSelection('tops', this, '600')">₹600</button>
+                      <button type="button" class="price-btn tops" onclick="toggleSelection('tops', this, '750')">₹750</button>
+                      <button type="button" class="price-btn tops" onclick="toggleSelection('tops', this, '1000+')">₹1000+</button>
+                      <input type="hidden" id="tops-input" name="tops" value="">
+                  </div>
               </div>
-            
+
               <!-- Outerwear Section -->
               <div class="category">
-                <h3>Outerwear</h3>
-                <p>Light jackets, trench coats, vests</p>
-                <div class="price-options">
-                  <button type="button" class="price-btn outerwear" onclick="toggleSelection('outerwear', this, '400')">₹400</button>
-                  <button type="button" class="price-btn outerwear" onclick="toggleSelection('outerwear', this, '600')">₹600</button>
-                  <button type="button" class="price-btn outerwear" onclick="toggleSelection('outerwear', this, '800')">₹800</button>
-                  <button type="button" class="price-btn outerwear" onclick="toggleSelection('outerwear', this, '1000')">₹1000</button>
-                  <button type="button" class="price-btn outerwear" onclick="toggleSelection('outerwear', this, '1200+')">₹1200+</button>
-                  <input type="hidden" id="outerwear-input" name="outerwear" value="600">
-                </div>
+                  <h3>Outerwear</h3>
+                  <p>Light jackets, trench coats, vests</p>
+                  <div class="price-options">
+                      <button type="button" class="price-btn outerwear" onclick="toggleSelection('outerwear', this, '400')">₹400</button>
+                      <button type="button" class="price-btn outerwear" onclick="toggleSelection('outerwear', this, '600')">₹600</button>
+                      <button type="button" class="price-btn outerwear" onclick="toggleSelection('outerwear', this, '800')">₹800</button>
+                      <button type="button" class="price-btn outerwear" onclick="toggleSelection('outerwear', this, '1000')">₹1000</button>
+                      <button type="button" class="price-btn outerwear" onclick="toggleSelection('outerwear', this, '1200+')">₹1200+</button>
+                      <input type="hidden" id="outerwear-input" name="outerwear" value="">
+                  </div>
               </div>
-            
+
               <!-- Dresses Section -->
               <div class="category">
-                <h3>Dresses</h3>
-                <p>Fit & flare, maxi, wrap, shift</p>
-                <div class="price-options">
-                  <button type="button" class="price-btn dresses" onclick="toggleSelection('dresses', this, '3000')">₹3000</button>
-                  <button type="button" class="price-btn dresses" onclick="toggleSelection('dresses', this, '5000')">₹5000</button>
-                  <button type="button" class="price-btn dresses" onclick="toggleSelection('dresses', this, '7500')">₹7500</button>
-                  <button type="button" class="price-btn dresses" onclick="toggleSelection('dresses', this, '10000')">₹10000</button>
-                  <button type="button" class="price-btn dresses" onclick="toggleSelection('dresses', this, '12500+')">₹12500+</button>
-                  <input type="hidden" id="dresses-input" name="dresses" value="7500">
-                </div>
+                  <h3>Dresses</h3>
+                  <p>Fit & flare, maxi, wrap, shift</p>
+                  <div class="price-options">
+                      <button type="button" class="price-btn dresses" onclick="toggleSelection('dresses', this, '3000')">₹3000</button>
+                      <button type="button" class="price-btn dresses" onclick="toggleSelection('dresses', this, '5000')">₹5000</button>
+                      <button type="button" class="price-btn dresses" onclick="toggleSelection('dresses', this, '7500')">₹7500</button>
+                      <button type="button" class="price-btn dresses" onclick="toggleSelection('dresses', this, '10000')">₹10000</button>
+                      <button type="button" class="price-btn dresses" onclick="toggleSelection('dresses', this, '12500+')">₹12500+</button>
+                      <input type="hidden" id="dresses-input" name="dresses" value="">
+                  </div>
               </div>
-            
+
               <!-- Next Button -->
               <button class="next-btn">Next</button>
-            </form>
-        </div>
-          <a href="ques12"><button class="prev-btn">Previous</button></a>
-        </div>
-    </div>
+          </form>
+      </div>
+      <a href="ques12"><button class="prev-btn">Previous</button></a>
+  </div>
 </section>
 
 <script>
-// Function to handle button selection
-document.addEventListener("DOMContentLoaded", () => {
-  // Object to store selected values for all categories
-  const selectedValues = {
-    tops: '',
-    outerwear: '',
-    dresses: ''
-  };
-
-  // Function to update hidden inputs and selectedValues object
-  function updateCategoryInput(category, value) {
-    const hiddenInputId = `${category}-input`;
-    let hiddenInput = document.getElementById(hiddenInputId);
-
-    // Ensure the hidden input exists
-    if (!hiddenInput) {
-      hiddenInput = document.createElement('input');
-      hiddenInput.type = 'hidden';
-      hiddenInput.id = hiddenInputId;
-      hiddenInput.name = category;
-      document.forms[0].appendChild(hiddenInput);
+  document.addEventListener("DOMContentLoaded", () => {
+    // Function to update hidden inputs and toggle button state
+    function updateSelection(category, value, button) {
+      // Find the hidden input for the category
+      const hiddenInput = document.getElementById(`${category}-input`);
+  
+      // If the button is already selected, deselect it and clear the value
+      if (button.classList.contains("selected")) {
+        button.classList.remove("selected");
+        hiddenInput.value = ""; // Clear the hidden input
+      } else {
+        // Deselect all buttons in the category
+        document.querySelectorAll(`.price-btn.${category}`).forEach((btn) => btn.classList.remove("selected"));
+  
+        // Select the clicked button
+        button.classList.add("selected");
+  
+        // Update the hidden input with the selected value
+        hiddenInput.value = value;
+      }
+  
+      // Debugging: Log the current state of hidden inputs
+      console.log(`${category} selected:`, hiddenInput.value);
     }
-
-    // Update the hidden input value
-    hiddenInput.value = value;
-
-    // Update the selectedValues object
-    selectedValues[category] = value;
-
-    // Debugging: Log the current state of selectedValues
-    console.log('Selected Values:', selectedValues);
-  }
-
-  // Add event listeners to all buttons
-  const categories = ["tops", "outerwear", "dresses"];
-  categories.forEach((category) => {
-    const buttons = document.querySelectorAll(`.price-btn.${category}`);
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const value = button.textContent.trim(); // Get the button's value (e.g., ₹450)
-
-        // Check if the button is already selected
-        if (button.classList.contains("selected")) {
-          // Deselect the button and clear the input
-          button.classList.remove("selected");
-          updateCategoryInput(category, ''); // Clear the value
-        } else {
-          // Deselect all buttons in the category
-          buttons.forEach((btn) => btn.classList.remove("selected"));
-
-          // Select the clicked button and update the input
-          button.classList.add("selected");
-          updateCategoryInput(category, value); // Set the selected value
-        }
+  
+    // Add event listeners to all price buttons
+    const categories = ["tops", "outerwear", "dresses"];
+    categories.forEach((category) => {
+      document.querySelectorAll(`.price-btn.${category}`).forEach((button) => {
+        button.addEventListener("click", () => {
+          const value = button.textContent.trim(); // Get the price value (e.g., ₹450)
+          updateSelection(category, value, button);
+        });
       });
     });
   });
-});
-
-
-
-
-
-</script>
-
-
+  
+  // Function to validate that a price is selected for each category before form submission
+  function validateSelections() {
+    const categories = ["tops", "outerwear", "dresses"];
+  
+    for (const category of categories) {
+      const hiddenInput = document.getElementById(`${category}-input`);
+      if (!hiddenInput || !hiddenInput.value) {
+        alert(`Please select a price option for ${category.charAt(0).toUpperCase() + category.slice(1)}.`);
+        return false; // Prevent form submission
+      }
+    }
+  
+    return true; // Allow form submission
+  }
+  </script>
+  
+  
 
 <style>
 
@@ -146,6 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
     top: 2rem;
     left: 15rem;
   }
+
   .container_q12 {
         padding: 4rem;
         width: 90%;
@@ -195,13 +184,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     .price-btn:hover {
-      color: #fff;
-      background-color: #1d3557;
+      background-color : #1d3557;
+     color : #fff;
     }
 
     .price-btn.selected {
-      color: #fff;
-      background-color: #1d3557;
+      background-color : #1d3557;
+      color : #fff;
     }
 
     .prev-btn, .next-btn {
@@ -234,23 +223,3 @@ document.addEventListener("DOMContentLoaded", () => {
     right: 11rem;
   }
 </style>
-
-<script>
-    function toggleSelection(button, season) {
-      const hiddenInput = document.getElementById('season');
-      
-      // Check if the button is already selected
-      if (button.classList.contains('selected')) {
-        // Deselect the button
-        button.classList.remove('selected');
-        hiddenInput.value = ''; // Clear the hidden input
-      } else {
-        // Deselect all buttons first
-        // document.querySelectorAll('.opt').forEach(btn => btn.classList.remove('selected'));
-        
-        // Select the clicked button
-        button.classList.add('selected');
-        hiddenInput.value = season; // Update the hidden input with the last selected value
-      }
-    }
-  </script>

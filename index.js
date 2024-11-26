@@ -343,8 +343,15 @@ app.get('/recommend_input', (req, res) => {
 let category_model;
 // Handle /recommend_input POST request
 app.post('/recommend_input', (req, res) => {
-    const inputArray = JSON.parse(req.body.inputArray); // Parse the JSON array
-    console.log(inputArray); // Logs: [season, clothCategory, occasion]
+    console.log(req.body); // Log the entire request body
+    const { season, cloth_category, occasion } = req.body;
+
+    if (!season || !cloth_category || !occasion) {
+        return res.status(400).send('All inputs are required');
+    }
+
+    const inputArray = [season, cloth_category, occasion];
+    console.log(inputArray); // Logs the inputs as an array
 
     // Dynamically create an auto-submitting form for /pay
     const formHtml = `
@@ -355,10 +362,9 @@ app.post('/recommend_input', (req, res) => {
             document.getElementById('payRedirectForm').submit();
         </script>
     `;
-    category_model = inputArray[1];
-    console.log(inputArray[1]);
     res.send(formHtml); // Send the form to the client for automatic submission
 });
+
 
 
 //Stripe authetication code
@@ -378,7 +384,7 @@ app.post('/pay', async(req, res) => {
             },
         ],
         mode: 'payment',
-        success_url: 'https://95a8-103-161-223-11.ngrok-free.app/complete1',
+        success_url: 'https://64b9-2402-3a80-b45-2606-8853-585e-1124-aef7.ngrok-free.app/complete1',
         // success_url:`${ process.env.BASE_URL}/output`,
         cancel_url: `${ process.env.BASE_URL}/cancel1`,
     });
@@ -522,7 +528,7 @@ app.post('/book-appointment', async (req, res) => {
             ],
             mode: 'payment',
             // success_url: `${process.env.BASE_URL}/complete2`,
-            success_url: `https://95a8-103-161-223-11.ngrok-free.app/complete2`,
+            success_url: `https://64b9-2402-3a80-b45-2606-8853-585e-1124-aef7.ngrok-free.app/complete2`,
             cancel_url: `${process.env.BASE_URL}/cancel2`,
         });
 

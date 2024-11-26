@@ -5,22 +5,21 @@
     <div class="input-container_q1">
       <h2>How does your bust compare with your bustWaist?</h2>
 
-        <form method="post" action="/ques10">
-            <div class="input_box_q1">
-                <button type="button" class="opt" onclick="selectbustWaist(this, 'B smaller than W')" ><img class="img1" src="image/bodyshape/bust_waist_-1.png" alt="bust1"/>My bust is smaller than my Waist</button><br>
-                <button type="button" class="opt" onclick="selectbustWaist(this, 'B same W')" ><img class="img1" src="image/bodyshape/bust_waist_0.png" alt="bust1"/>My bust is the same size as my Waist</button><br>
-                <button type="button" class="opt" onclick="selectbustWaist(this, 'B larger than W')" ><img class="img1" src="image/bodyshape/bust_waist_1.png" alt="bust1"/>My bust is larger than my Waist</button><br>
-            </div>
-            <input type="hidden" name="bustWaist" id="bustWaist" class="hidden-input">
-            <button class="next-btn">Next</button>
-        </form>
+      <form method="post" action="/ques10" onsubmit="return validateBustWaist()">
+        <div class="input_box_q1">
+          <button type="button" class="opt" onclick="selectbustWaist(this, 'B smaller than W')"><img class="img1" src="image/bodyshape/bust_waist_-1.png" alt="bust1" />My bust is smaller than my Waist</button><br>
+          <button type="button" class="opt" onclick="selectbustWaist(this, 'B same W')"><img class="img1" src="image/bodyshape/bust_waist_0.png" alt="bust1" />My bust is the same size as my Waist</button><br>
+          <button type="button" class="opt" onclick="selectbustWaist(this, 'B larger than W')"><img class="img1" src="image/bodyshape/bust_waist_1.png" alt="bust1" />My bust is larger than my Waist</button><br>
+        </div>
+        <input type="hidden" name="bustWaist" id="bustWaist" class="hidden-input">
+        <button class="next-btn">Next</button>
+      </form>
     </div>
 
     <!-- Previous button -->
-      <a href="ques9"><button class="prev-btn">Previous</button></a>
+    <a href="ques9"><button class="prev-btn">Previous</button></a>
   </div>
 </section>
-
 
 <script>
   function selectbustWaist(button, bustWaist) {
@@ -41,7 +40,20 @@
           hiddenInput.value = bustWaist; // Set the hidden input to the selected value
       }
   }
+
+  function validateBustWaist() {
+      const hiddenInput = document.getElementById('bustWaist');
+      if (!hiddenInput.value) {
+          alert('Please select an option before proceeding.');
+          return false; // Prevent form submission
+      }
+      return true; // Allow form submission
+  }
 </script>
+
+
+
+
 
 <style>
 

@@ -1,9 +1,10 @@
 <% layout('layouts/boilerplate') %>
+
 <section class="ques11">
     <div class="style-q1">
         <h2>Do you like this style?</h2>
         
-        <form method="post" action="/ques12">
+        <form method="post" action="/ques12" onsubmit="return validateSelection()">
             <div class="clothing-display">
                 <img src="image/bcloth.jpg" alt="pic" class="clothing-item single-item">    
             </div>
@@ -39,7 +40,17 @@
             hiddenInput.value = style; // Set the hidden input to the selected value
         }
     }
+
+    function validateSelection() {
+        const hiddenInput = document.getElementById('style');
+        if (!hiddenInput.value) {
+            alert("Please select 'Yes' or 'No' before proceeding.");
+            return false; // Prevent form submission
+        }
+        return true; // Allow form submission
+    }
 </script>
+
 
 
 <style>

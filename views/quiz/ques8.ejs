@@ -5,7 +5,7 @@
     <div class="input-container">
       <h2>How does your bust compare with your hips?</h2>
 
-        <form method="post" action="/ques8">
+        <form method="post" action="/ques8" onsubmit="return validateBustSelection()">
             <div class="input-box">
                 <button  type="button" class="opt" onclick="selectBust(this, 'B smaller than H')"><img class="img1" src="image/bodyshape/bust_hips_-1.png" alt="bust1"/>My bust is smaller than my hips</button><br>
                 <button  type="button" class="opt" onclick="selectBust(this, 'B same as H')"><img class="img1" src="image/bodyshape/bust_hips_0.png" alt="bust1"/>My bust is the same size as my hips</button><br>
@@ -18,7 +18,7 @@
 
     <!-- Previous button -->
       <a href="ques7"><button class="prev-btn">Previous</button></a>
-  </div>
+  </a>
 </section>
 
 <script>
@@ -39,6 +39,15 @@
           button.classList.add('selected');
           hiddenInput.value = bust; // Set the hidden input to the selected value
       }
+  }
+
+  function validateBustSelection() {
+      const bustValue = document.getElementById('bust').value;
+      if (!bustValue) {
+          alert('Please select an option before proceeding.');
+          return false; // Prevent form submission
+      }
+      return true; // Allow form submission
   }
 </script>
 
